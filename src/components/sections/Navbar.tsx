@@ -40,11 +40,12 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
-          <button onClick={() => scrollTo('#home')} className="flex flex-col items-start">
-            <span className="font-display font-bold text-xl text-white leading-tight">
-              Jay<span className="gold-shimmer">bhadra</span>
-            </span>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-[#888] font-light">Builders</span>
+          <button onClick={() => scrollTo('#home')}>
+            <img
+              src="/logo.png"
+              alt="Jaybhadra Builders"
+              className="h-12 w-auto object-contain"
+            />
           </button>
 
           {/* Desktop nav */}
