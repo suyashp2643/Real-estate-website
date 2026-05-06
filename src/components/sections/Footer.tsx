@@ -15,10 +15,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="md:col-span-2">
-            <div className="font-display text-3xl font-bold text-white mb-1">
-              Jay<span className="gold-shimmer">bhadra</span>
-            </div>
-            <div className="text-[10px] uppercase tracking-[0.3em] text-[#555] mb-4">Builders</div>
+            <img
+              src="/logo.png"
+              alt="Jaybhadra Builders"
+              className="h-14 w-auto object-contain mb-4"
+            />
             <p className="text-[13px] text-[#666] leading-relaxed max-w-xs mb-6">
               Sangamner's most trusted construction partner. Building premium residential & commercial spaces since 2010.
             </p>
