@@ -28,10 +28,11 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
           transition={{ delay: 0.3, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="mb-6"
         >
-          <div className="font-display text-5xl font-bold text-white">
-            Jay<span className="gold-shimmer">bhadra</span>
-          </div>
-          <div className="text-center text-[10px] uppercase tracking-[0.4em] text-[#666] mt-1">Builders</div>
+          <img
+            src="/logo.png"
+            alt="Jaybhadra Builders"
+            className="h-20 w-auto object-contain"
+          />
         </motion.div>
 
         {/* Loading bar */}
