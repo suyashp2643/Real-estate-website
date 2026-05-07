@@ -86,8 +86,8 @@ export default function ContactSection() {
             {/* Contact cards */}
             <div className="space-y-4">
 
-              {/* Call card */}
-              
+              {/* Call card — FIXED: restored missing <a */}
+              <a
                 href={`tel:${COMPANY.phone}`}
                 className="flex items-center gap-4 glass rounded-xl p-4 hover:border-[#d4a820]/40 transition-all group"
               >
@@ -110,8 +110,8 @@ export default function ContactSection() {
                 </div>
               </a>
 
-              {/* WhatsApp card */}
-              
+              {/* WhatsApp card — FIXED: restored missing <a */}
+              <a
                 href={`https://wa.me/${COMPANY.whatsapp}?text=Hello! I'd like to know more about your projects.`}
                 target="_blank"
                 rel="noopener noreferrer"
