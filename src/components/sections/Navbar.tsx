@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { COMPANY } from '@/lib/data';
+import ThemeToggle from '@/components/ui/ThemeToggle';
+import { useTheme } from '@/lib/ThemeContext';
 
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -71,7 +73,8 @@ export default function Navbar() {
 
           {/* CTA */}
           <div className="hidden md:flex items-center gap-3">
-            <a
+            <ThemeToggle />
+  
               href={`tel:${COMPANY.phone}`}
               className="btn-outline-gold text-[12px] py-2.5 px-5"
             >
@@ -119,7 +122,8 @@ export default function Navbar() {
                   {link.label}
                 </motion.button>
               ))}
-              <div className="flex gap-3 mt-4">
+              <div className="flex gap-3 mt-4 items-center">
+                <ThemeToggle />
                 <a href={`tel:${COMPANY.phone}`} className="btn-outline-gold flex-1 text-center text-[12px]">
                   📞 Call
                 </a>
