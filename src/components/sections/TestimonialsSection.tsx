@@ -25,7 +25,7 @@ export default function TestimonialsSection() {
   const t = TESTIMONIALS[current];
 
   return (
-    <section id="testimonials" className="py-24 bg-[#080808] relative overflow-hidden">
+    <section id="testimonials" className="py-24 relative overflow-hidden" style={{background: 'var(--bg-secondary)'}}>
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4a820]/30 to-transparent" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,168,32,0.04)_0%,transparent_70%)]" />
 
