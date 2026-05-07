@@ -25,7 +25,7 @@ export default function ProjectsSection() {
   });
 
   return (
-    <section id="projects" className="py-24 bg-[#0f0f0f] relative overflow-hidden">
+    <section id="projects" className="py-24 relative overflow-hidden" style={{background: 'var(--bg-primary)'}}>
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4a820]/30 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6" ref={ref}>
