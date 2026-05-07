@@ -8,7 +8,7 @@ export default function AboutSection() {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   return (
-    <section id="about" className="py-24 bg-[#080808] relative overflow-hidden">
+    <section id="about" className="py-24 relative overflow-hidden" style={{background: 'var(--bg-secondary)'}}>
       {/* Decorative elements */}
       <div className="absolute right-0 top-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_top_right,rgba(212,168,32,0.04)_0%,transparent_60%)]" />
       <div className="absolute left-0 bottom-0 w-80 h-80 rounded-full border border-[rgba(212,168,32,0.05)]" />
