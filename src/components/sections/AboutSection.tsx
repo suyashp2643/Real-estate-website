@@ -70,17 +70,24 @@ export default function AboutSection() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="relative"
             >
-              {/* Main image */}
+              {/* Founder image */}
               <div className="relative rounded-2xl overflow-hidden h-72 mb-6">
-                <div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80')` }}
+                <img
+                  src="/founder.jpg"
+                  alt="Founder - Jaybhadra Builders"
+                  className="w-full h-full object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#080808]/80 to-transparent" />
                 <div className="absolute bottom-6 left-6">
-                  <div className="text-[11px] text-[#d4a820] uppercase tracking-wider mb-1">Est. 2010</div>
-                  <div className="font-display text-xl text-white font-semibold">Jaybhadra Builders</div>
-                  <div className="text-[12px] text-[#888]">Sangamner, Maharashtra</div>
+                  <div className="text-[11px] text-[#d4a820] uppercase tracking-wider mb-1">
+                    Founder & Director
+                  </div>
+                  <div className="font-display text-xl text-white font-semibold">
+                    Jaybhadra Builders
+                  </div>
+                  <div className="text-[12px] text-[#888]">
+                    Est. 2010 · Sangamner, Maharashtra
+                  </div>
                 </div>
               </div>
 
