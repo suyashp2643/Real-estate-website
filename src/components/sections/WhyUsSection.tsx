@@ -7,7 +7,7 @@ export default function WhyUsSection() {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   return (
-    <section id="why-us" className="py-24 relative overflow-hidden bg-[#080808]">
+    <section id="why-us" className="py-24 relative overflow-hidden" style={{background: 'var(--bg-secondary)'}}>
       {/* Decorative background */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,168,32,0.05)_0%,transparent_70%)]" />
       
