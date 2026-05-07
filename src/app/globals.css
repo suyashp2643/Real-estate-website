@@ -1,3 +1,34 @@
+/* ===== DARK MODE (default) ===== */
+[data-theme="dark"] {
+  --bg-primary: #0f0f0f;
+  --bg-secondary: #080808;
+  --bg-card: rgba(255, 255, 255, 0.04);
+  --text-primary: #fdfaf4;
+  --text-secondary: #aaaaaa;
+  --text-muted: #666666;
+  --border-color: rgba(212, 168, 32, 0.15);
+  --navbar-bg: rgba(8, 8, 8, 0.95);
+  --input-bg: rgba(255, 255, 255, 0.05);
+  --gold: #d4a820;
+  --gold-light: #f0d080;
+  --shadow: rgba(0, 0, 0, 0.5);
+}
+
+/* ===== LIGHT MODE ===== */
+[data-theme="light"] {
+  --bg-primary: #f8f5ef;
+  --bg-secondary: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --text-primary: #1a1a1a;
+  --text-secondary: #444444;
+  --text-muted: #888888;
+  --border-color: rgba(212, 168, 32, 0.3);
+  --navbar-bg: rgba(248, 245, 239, 0.95);
+  --input-bg: rgba(0, 0, 0, 0.04);
+  --gold: #b8901a;
+  --gold-light: #d4a820;
+  --shadow: rgba(0, 0, 0, 0.15);
+}
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -26,8 +57,9 @@ html {
 }
 
 body {
-  background-color: var(--charcoal);
-  color: var(--cream);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.4s ease, color 0.4s ease;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
 }
@@ -61,10 +93,11 @@ body {
 
 /* Glass card */
 .glass {
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--bg-card);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(212, 168, 32, 0.15);
+  border: 1px solid var(--border-color);
+  transition: background 0.4s ease, border-color 0.4s ease;
 }
 
 .glass-dark {
@@ -171,8 +204,8 @@ body {
 
 /* Form styling */
 .form-input {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(212,168,32,0.2);
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 14px 18px;
   color: white;
@@ -315,7 +348,7 @@ select.form-input option {
 
 /* Navbar */
 .navbar-scroll {
-  background: rgba(8,8,8,0.95);
+  background: var(--navbar-bg);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(212,168,32,0.2);
   box-shadow: 0 4px 30px rgba(0,0,0,0.5);
