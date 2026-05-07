@@ -71,10 +71,10 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* CTA */}
+          {/* CTA — FIXED: restored missing <a */}
           <div className="hidden md:flex items-center gap-3">
             <ThemeToggle />
-  
+            <a
               href={`tel:${COMPANY.phone}`}
               className="btn-outline-gold text-[12px] py-2.5 px-5"
             >
