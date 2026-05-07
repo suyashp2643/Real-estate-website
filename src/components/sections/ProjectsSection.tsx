@@ -137,21 +137,13 @@ export default function ProjectsSection() {
                   </p>
 
                   <div className="flex gap-3">
-                    <a
-                      href={`https://wa.me/919876543210?text=Hi! I'm interested in ${project.name}. Please share details.`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-gold flex-1 text-center text-[11px] py-2.5 inline-block"
-                    >
-                      Know More
-                    </a>
                     <button
                       onClick={() => setModalProject(project.name)}
-                      className="btn-outline-gold flex-1 text-[11px] py-2.5"
+                      className="btn-gold w-full text-[11px] py-2.5"
                     >
                       Request Site Visit
                     </button>
-                  </div>
+                </div>
                 </div>
               </motion.div>
             ))}
