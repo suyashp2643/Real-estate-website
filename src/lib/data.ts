@@ -23,14 +23,14 @@ export const STATS = [
 export const PROJECTS = [
   {
     id: 1,
-    name: 'Shivprasad Residency',
+    name: 'Golden City',
     location: 'Sangamner, Maharashtra',
     category: 'residential',
     status: 'completed',
     specs: '2BHK, 3BHK',
     completionYear: '2022',
     units: '48 Units',
-    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80',
+    image: 'https://ibb.co/J61GJj9',
     description: 'Premium residential complex with modern amenities and elegant design.',
   },
   {
