@@ -265,6 +265,43 @@ export const PROJECTS: Project[] = [
       'https://jaybhadrabuilders.com/wp-content/uploads/2025/04/5.png',
     ],
   },
+  {
+    id: 13,
+    slug: 'jaybhadra-commercials',
+    name: 'Jay Bhadra Commercial\'s',
+    location: 'Sangamner, Maharashtra',
+    category: 'commercial',
+    status: 'ongoing',
+    specs: 'Shops, Offices, Showrooms',
+    units: 'Ground + 4 Floors | Multiple Commercial Units',
+    image: 'PASTE_YOUR_IMGBB_URL_HERE',
+    description: 'Premium commercial complex with ground floor shops, showrooms and upper floor office spaces in prime Sangamner location.',
+    fullDescription: 'Jay Bhadra Commercials is an impressive ongoing commercial development by Jaybhadra Builders. This landmark building features ground floor retail shops and showrooms including premium fashion and lifestyle brands, upper floor office spaces with modern infrastructure, and a striking glass facade that makes it one of the most prominent commercial buildings in Sangamner. An excellent investment opportunity for businesses and investors alike.',
+    highlights: [
+      'Ground Floor Shops & Showrooms',
+      'Upper Floor Office Spaces',
+      'Premium Glass Facade',
+      'Prime Corner Location',
+      'High Footfall Area',
+      'Modern Infrastructure',
+      'Ample Parking Space',
+      'CCTV & 24/7 Security',
+    ],
+    amenities: [
+      '24/7 Security',
+      'Power Backup',
+      'Water Supply',
+      'CCTV Surveillance',
+      'Ample Parking',
+      'Fire Safety System',
+      'Lift Access',
+      'High Speed Internet',
+    ],
+    urgency: 'Limited units available — Book now!',
+    gallery: [
+      'PASTE_YOUR_IMGBB_URL_HERE',
+    ],
+  },
 ];
 
 export const SERVICES = [
