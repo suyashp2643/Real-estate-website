@@ -1,44 +1,47 @@
 'use client';
 import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { PROJECTS, COMPANY, type Project } from '@/lib/data';
+import { PROJECTS, COMPANY } from '@/lib/data';
 import { useEffect, useState } from 'react';
 
 export default function ProjectDetailPage() {
-  const { slug } = useParams();
+  const params = useParams();
+  const slug = params?.slug as string;
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState({ name: '', phone: '', date: '', time: '' });
   const [submitted, setSubmitted] = useState(false);
 
-  const project = PROJECTS.find(p => p.slug === slug) as Project | undefined;
+  const project = PROJECTS.find((p: any) => p.slug === slug);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  if (!project) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-[#0f0f0f]">
-        <div className="text-6xl mb-4">🏗️</div>
-        <h1 className="font-display text-3xl text-white mb-4">Project Not Found</h1>
-        <button onClick={() => router.push('/')} className="btn-gold px-8 py-3">
-          Back to Home
-        </button>
-      </div>
-    );
-  }
-
   const handleBooking = (e: React.FormEvent) => {
     e.preventDefault();
     const msg = encodeURIComponent(
-      `🏗️ *Site Visit Request*\n\nProject: ${project.name}\n👤 Name: ${form.name}\n📞 Phone: ${form.phone}\n📅 Date: ${form.date}\n⏰ Time: ${form.time}`
+      `🏗️ *Site Visit Request*\n\nProject: ${project?.name}\n👤 Name: ${form.name}\n📞 Phone: ${form.phone}\n📅 Date: ${form.date}\n⏰ Time: ${form.time}`
     );
     setSubmitted(true);
     setTimeout(() => {
       window.open(`https://wa.me/${COMPANY.whatsapp}?text=${msg}`, '_blank');
     }, 800);
   };
+
+  if (!project) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center" style={{ background: 'var(--bg-primary)' }}>
+        <div className="text-6xl mb-4">🏗️</div>
+        <h1 className="font-display text-3xl mb-4" style={{ color: 'var(--text-primary)' }}>
+          Project Not Found
+        </h1>
+        <button onClick={() => router.push('/')} className="btn-gold px-8 py-3">
+          Back to Home
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg-primary)' }}>
@@ -74,16 +77,16 @@ export default function ProjectDetailPage() {
           </span>
         </div>
 
-        {/* Urgency */}
-        {project.urgency && (
-          <div className="absolute top-8 left-20">
+        {/* Urgency badge */}
+        {(project as any).urgency && (
+          <div className="absolute top-8 left-24">
             <span className="urgency-badge px-4 py-2 rounded-full text-[11px] font-bold text-white">
-              🔥 {project.urgency}
+              🔥 {(project as any).urgency}
             </span>
           </div>
         )}
 
-        {/* Project title overlay */}
+        {/* Title overlay */}
         <div className="absolute bottom-10 left-0 right-0 px-6 max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -100,14 +103,14 @@ export default function ProjectDetailPage() {
         </div>
       </div>
 
-      {/* Content */}
+      {/* Main content */}
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid lg:grid-cols-3 gap-12">
 
-          {/* Left — Main Info */}
+          {/* Left — Details */}
           <div className="lg:col-span-2 space-y-10">
 
-            {/* Quick info bar */}
+            {/* Quick info cards */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -118,21 +121,31 @@ export default function ProjectDetailPage() {
                 { icon: '🏠', label: 'Type', value: project.specs },
                 { icon: '📍', label: 'Location', value: project.location },
                 { icon: '🏗️', label: 'Units', value: project.units || 'Multiple' },
-                { icon: '📅', label: project.status === 'completed' ? 'Completed' : 'Expected', value: project.completionYear || '2025' },
+                {
+                  icon: '📅',
+                  label: project.status === 'completed' ? 'Completed' : 'Expected',
+                  value: project.completionYear || '2025'
+                },
               ].map((item, i) => (
                 <div key={i} className="glass rounded-xl p-4 text-center">
                   <div className="text-2xl mb-1">{item.icon}</div>
-                  <div className="text-[10px] uppercase tracking-wide mb-1" style={{ color: 'var(--text-muted)' }}>
+                  <div
+                    className="text-[10px] uppercase tracking-wide mb-1"
+                    style={{ color: 'var(--text-muted)' }}
+                  >
                     {item.label}
                   </div>
-                  <div className="text-[12px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+                  <div
+                    className="text-[12px] font-semibold"
+                    style={{ color: 'var(--text-primary)' }}
+                  >
                     {item.value}
                   </div>
                 </div>
               ))}
             </motion.div>
 
-            {/* About Project */}
+            {/* About */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -143,62 +156,60 @@ export default function ProjectDetailPage() {
               </h2>
               <div className="w-12 h-0.5 bg-[#d4a820] mb-5" />
               <p className="text-[15px] leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                {project.fullDescription}
+                {(project as any).fullDescription || project.description}
               </p>
             </motion.div>
 
             {/* Highlights */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <h2 className="font-display text-2xl mb-4" style={{ color: 'var(--text-primary)' }}>
-                Project Highlights
-              </h2>
-              <div className="w-12 h-0.5 bg-[#d4a820] mb-5" />
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {project.highlights?.map((item, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-3 glass rounded-xl p-4"
-                  >
-                    <div className="w-6 h-6 rounded-full bg-[rgba(212,168,32,0.2)] flex items-center justify-center flex-shrink-0">
-                      <span className="text-[#d4a820] text-[11px] font-bold">✓</span>
+            {(project as any).highlights && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <h2 className="font-display text-2xl mb-4" style={{ color: 'var(--text-primary)' }}>
+                  Project Highlights
+                </h2>
+                <div className="w-12 h-0.5 bg-[#d4a820] mb-5" />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {(project as any).highlights.map((item: string, i: number) => (
+                    <div key={i} className="flex items-center gap-3 glass rounded-xl p-4">
+                      <div className="w-6 h-6 rounded-full bg-[rgba(212,168,32,0.2)] flex items-center justify-center flex-shrink-0">
+                        <span className="text-[#d4a820] text-[11px] font-bold">✓</span>
+                      </div>
+                      <span className="text-[13px]" style={{ color: 'var(--text-secondary)' }}>
+                        {item}
+                      </span>
                     </div>
-                    <span className="text-[13px]" style={{ color: 'var(--text-secondary)' }}>
-                      {item}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
 
             {/* Amenities */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <h2 className="font-display text-2xl mb-4" style={{ color: 'var(--text-primary)' }}>
-                Amenities
-              </h2>
-              <div className="w-12 h-0.5 bg-[#d4a820] mb-5" />
-              <div className="flex flex-wrap gap-3">
-                {project.amenities?.map((item, i) => (
-                  <span
-                    key={i}
-                    className="trust-badge text-[12px]"
-                  >
-                    ✅ {item}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
+            {(project as any).amenities && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <h2 className="font-display text-2xl mb-4" style={{ color: 'var(--text-primary)' }}>
+                  Amenities
+                </h2>
+                <div className="w-12 h-0.5 bg-[#d4a820] mb-5" />
+                <div className="flex flex-wrap gap-3">
+                  {(project as any).amenities.map((item: string, i: number) => (
+                    <span key={i} className="trust-badge text-[12px]">
+                      ✅ {item}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            )}
 
           </div>
 
-          {/* Right — Sticky Contact Card */}
+          {/* Right — Sticky contact card */}
           <div>
             <motion.div
               initial={{ opacity: 0, x: 30 }}
@@ -208,10 +219,10 @@ export default function ProjectDetailPage() {
             >
 
               {/* Urgency */}
-              {project.urgency && (
+              {(project as any).urgency && (
                 <div className="urgency-badge rounded-xl p-3 text-center">
                   <span className="text-white text-[12px] font-semibold">
-                    🔥 {project.urgency}
+                    🔥 {(project as any).urgency}
                   </span>
                 </div>
               )}
@@ -239,7 +250,9 @@ export default function ProjectDetailPage() {
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 w-full py-3.5 rounded-md border border-[#25D366]/40 text-[#25D366] text-[13px] font-semibold hover:bg-[#25D366]/10 transition-all"
                   >
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    </svg>
                     WhatsApp Us
                   </a>
 
@@ -253,12 +266,21 @@ export default function ProjectDetailPage() {
               </div>
 
               {/* Trust badges */}
-              <div className="glass rounded-2xl p-5 space-y-3">
+              <div className="glass rounded-2xl p-5">
                 <div className="text-[11px] uppercase tracking-wider text-[#d4a820] font-semibold mb-3">
                   Why Jaybhadra Builders
                 </div>
-                {['✅ Trusted Since 2010', '🔧 3-Year Maintenance', '📋 RERA Compliant', '⭐ 4.9 Star Rated'].map((b, i) => (
-                  <div key={i} className="text-[12px] flex items-center gap-2" style={{ color: 'var(--text-secondary)' }}>
+                {[
+                  '✅ Trusted Since 2010',
+                  '🔧 3-Year Maintenance',
+                  '📋 RERA Compliant',
+                  '⭐ 4.9 Star Rated'
+                ].map((b, i) => (
+                  <div
+                    key={i}
+                    className="text-[12px] flex items-center gap-2 mb-2"
+                    style={{ color: 'var(--text-secondary)' }}
+                  >
                     {b}
                   </div>
                 ))}
@@ -274,7 +296,7 @@ export default function ProjectDetailPage() {
       {showModal && (
         <div
           className="modal-overlay"
-          onClick={e => e.target === e.currentTarget && setShowModal(false)}
+          onClick={(e) => { if (e.target === e.currentTarget) setShowModal(false); }}
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -283,7 +305,7 @@ export default function ProjectDetailPage() {
           >
             <button
               onClick={() => setShowModal(false)}
-              className="absolute top-4 right-4 w-8 h-8 rounded-full border border-[rgba(212,168,32,0.3)] text-[#888] hover:text-white flex items-center justify-center"
+              className="absolute top-4 right-4 w-8 h-8 rounded-full border border-[rgba(212,168,32,0.3)] text-[#888] hover:text-white flex items-center justify-center text-lg"
             >
               ×
             </button>
@@ -293,33 +315,38 @@ export default function ProjectDetailPage() {
                 <div className="text-5xl mb-4">🏗️</div>
                 <h3 className="font-display text-2xl text-white mb-2">Visit Confirmed!</h3>
                 <p className="text-[#888] text-sm">
-                  Our team will WhatsApp you with details for <strong className="text-[#d4a820]">{project.name}</strong>!
+                  Our team will WhatsApp you with details for{' '}
+                  <strong className="text-[#d4a820]">{project.name}</strong>!
                 </p>
               </div>
             ) : (
-              <>
+              <div>
                 <div className="text-center mb-6">
                   <h3 className="font-display text-2xl text-white mb-1">Book a Site Visit</h3>
                   <p className="text-[12px] text-[#888]">{project.name}</p>
                 </div>
                 <form onSubmit={handleBooking} className="space-y-4">
                   <div>
-                    <label className="text-[11px] text-[#666] uppercase tracking-wide block mb-2">Your Name</label>
+                    <label className="text-[11px] text-[#666] uppercase tracking-wide block mb-2">
+                      Your Name
+                    </label>
                     <input
                       type="text"
                       value={form.name}
-                      onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
+                      onChange={(e) => setForm(p => ({ ...p, name: e.target.value }))}
                       placeholder="Full Name"
                       className="form-input"
                       required
                     />
                   </div>
                   <div>
-                    <label className="text-[11px] text-[#666] uppercase tracking-wide block mb-2">Phone Number *</label>
+                    <label className="text-[11px] text-[#666] uppercase tracking-wide block mb-2">
+                      Phone Number *
+                    </label>
                     <input
                       type="tel"
                       value={form.phone}
-                      onChange={e => setForm(p => ({ ...p, phone: e.target.value }))}
+                      onChange={(e) => setForm(p => ({ ...p, phone: e.target.value }))}
                       placeholder="+91 98765 43210"
                       className="form-input"
                       required
@@ -327,21 +354,25 @@ export default function ProjectDetailPage() {
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="text-[11px] text-[#666] uppercase tracking-wide block mb-2">Date</label>
+                      <label className="text-[11px] text-[#666] uppercase tracking-wide block mb-2">
+                        Date
+                      </label>
                       <input
                         type="date"
                         value={form.date}
-                        onChange={e => setForm(p => ({ ...p, date: e.target.value }))}
+                        onChange={(e) => setForm(p => ({ ...p, date: e.target.value }))}
                         className="form-input"
                         min={new Date().toISOString().split('T')[0]}
                         required
                       />
                     </div>
                     <div>
-                      <label className="text-[11px] text-[#666] uppercase tracking-wide block mb-2">Time</label>
+                      <label className="text-[11px] text-[#666] uppercase tracking-wide block mb-2">
+                        Time
+                      </label>
                       <select
                         value={form.time}
-                        onChange={e => setForm(p => ({ ...p, time: e.target.value }))}
+                        onChange={(e) => setForm(p => ({ ...p, time: e.target.value }))}
                         className="form-input"
                         required
                       >
@@ -360,8 +391,9 @@ export default function ProjectDetailPage() {
                     📅 Book via WhatsApp
                   </button>
                 </form>
-              </>
+              </div>
             )}
+
           </motion.div>
         </div>
       )}
