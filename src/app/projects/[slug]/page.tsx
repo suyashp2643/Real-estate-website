@@ -1,7 +1,7 @@
 'use client';
 import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { PROJECTS, COMPANY } from '@/lib/data';
+import { PROJECTS, COMPANY, type Project } from '@/lib/data';
 import { useEffect, useState } from 'react';
 
 export default function ProjectDetailPage() {
@@ -11,7 +11,7 @@ export default function ProjectDetailPage() {
   const [form, setForm] = useState({ name: '', phone: '', date: '', time: '' });
   const [submitted, setSubmitted] = useState(false);
 
-  const project = PROJECTS.find(p => p.slug === slug);
+  const project = PROJECTS.find(p => p.slug === slug) as Project | undefined;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -158,7 +158,7 @@ export default function ProjectDetailPage() {
               </h2>
               <div className="w-12 h-0.5 bg-[#d4a820] mb-5" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {project.highlights?.map((item: string, i: number) => (
+                {project.highlights?.map((item, i) => (
                   <div
                     key={i}
                     className="flex items-center gap-3 glass rounded-xl p-4"
@@ -185,7 +185,7 @@ export default function ProjectDetailPage() {
               </h2>
               <div className="w-12 h-0.5 bg-[#d4a820] mb-5" />
               <div className="flex flex-wrap gap-3">
-                {project.amenities?.map((item: string, i: number) => (
+                {project.amenities?.map((item, i) => (
                   <span
                     key={i}
                     className="trust-badge text-[12px]"
