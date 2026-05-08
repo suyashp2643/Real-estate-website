@@ -19,8 +19,25 @@ export const STATS = [
   { value: 500, label: 'Happy Families', suffix: '+' },
   { value: 100, label: 'Client Satisfaction', suffix: '%' },
 ];
-
-export const PROJECTS = [
+export interface Project {
+  id: number;
+  slug: string;
+  name: string;
+  location: string;
+  category: string;
+  status: string;
+  specs: string;
+  completionYear?: string;
+  units?: string;
+  image: string;
+  description: string;
+  fullDescription?: string;
+  highlights?: string[];
+  amenities?: string[];
+  gallery?: string[];
+  urgency?: string;
+}
+export const PROJECTS: Project[] = [
   {
     id: 1,
     slug: 'golden-city',
