@@ -2,9 +2,9 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useRouter } from 'next/navigation';
 import { PROJECTS } from '@/lib/data';
 import SiteVisitModal from '../ui/SiteVisitModal';
-import Image from 'next/image';
 
 const FILTERS = [
   { label: 'All Projects', value: 'all' },
@@ -18,6 +18,7 @@ export default function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState('all');
   const [modalProject, setModalProject] = useState<string | null>(null);
   const { ref, inView } = useInView({ threshold: 0.05, triggerOnce: true });
+  const router = useRouter();
 
   const filtered = PROJECTS.filter(p => {
     if (activeFilter === 'all') return true;
@@ -81,8 +82,11 @@ export default function ProjectsSection() {
                 transition={{ duration: 0.4, delay: i * 0.08 }}
                 className="project-card glass rounded-2xl overflow-hidden group"
               >
-                {/* Image */}
-                <div className="relative h-52 overflow-hidden">
+                {/* Image — clickable */}
+                <div
+                  className="relative h-52 overflow-hidden cursor-pointer"
+                  onClick={() => router.push(`/projects/${project.slug}`)}
+                >
                   <div
                     className="card-image absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: `url('${project.image}')` }}
