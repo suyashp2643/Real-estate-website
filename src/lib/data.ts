@@ -299,7 +299,7 @@ export const PROJECTS: Project[] = [
     ],
     urgency: 'Limited units available — Book now!',
     gallery: [
-      'PASTE_YOUR_IMGBB_URL_HERE',
+      'https://i.ibb.co/Y7Gnywbz/jaybhadra-commercial-jpg.jpg',
     ],
   },
 ];
