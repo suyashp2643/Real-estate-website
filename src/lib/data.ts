@@ -274,7 +274,7 @@ export const PROJECTS: Project[] = [
     status: 'ongoing',
     specs: 'Shops, Offices, Showrooms',
     units: 'Ground + 4 Floors | Multiple Commercial Units',
-    image: 'PASTE_YOUR_IMGBB_URL_HERE',
+    image: 'https://i.ibb.co/Y7Gnywbz/jaybhadra-commercial-jpg.jpg',
     description: 'Premium commercial complex with ground floor shops, showrooms and upper floor office spaces in prime Sangamner location.',
     fullDescription: 'Jay Bhadra Commercials is an impressive ongoing commercial development by Jaybhadra Builders. This landmark building features ground floor retail shops and showrooms including premium fashion and lifestyle brands, upper floor office spaces with modern infrastructure, and a striking glass facade that makes it one of the most prominent commercial buildings in Sangamner. An excellent investment opportunity for businesses and investors alike.',
     highlights: [
