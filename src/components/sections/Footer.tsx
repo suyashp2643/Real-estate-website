@@ -64,7 +64,23 @@ export default function Footer() {
             <div className="space-y-3 text-[13px] text-[#666]">
               <div className="flex items-start gap-2">
                 <span className="mt-0.5">📍</span>
-                <span>{COMPANY.address}</span>
+                <div>
+                  <div className="text-[10px] text-[#d4a820] uppercase tracking-wide mb-0.5">Sangamner</div>
+                  <span>{COMPANY.address}</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-2 mt-2">
+                <span className="mt-0.5">📍</span>
+                <div>
+                  <div className="text-[10px] text-[#d4a820] uppercase tracking-wide mb-0.5">Nashik</div>
+                  <span>{COMPANY.nashikAddress}</span>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 mt-2">
+                <span>📞</span>
+                <a href={`tel:${COMPANY.nashikPhone}`} className="hover:text-[#d4a820] transition-colors">
+                  Nashik: {COMPANY.nashikPhone}
+                </a>
               </div>
               <div className="flex items-center gap-2">
                 <span>📞</span>
