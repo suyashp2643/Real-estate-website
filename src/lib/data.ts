@@ -3,14 +3,22 @@
 export const COMPANY = {
   name: 'Jaybhadra Builders',
   tagline: 'Building Dreams, Delivering Trust',
-  location: 'Sangamner, Maharashtra, India',
-  phone: '+91 9130711811',
+  location: 'Sangamner & Nashik, Maharashtra, India',
+  phone: '+91 91307 11811',
   phoneRaw: '919130711811',
-  email: 'info@jayabhadrabuilders.com',
+  email: 'info@jaybhadrabuilders.com',
   whatsapp: '919130711811',
-  founded: '2010',
-  address: 'Near Bus Stand, Sangamner, Ahmednagar District, Maharashtra - 422605',
+
+  nashikPhone: '+91 9765711811',
+  nashikPhoneRaw: '919765711811',
+
+  address: '132 K.V. Road, Jaybhadra Complex, Sai Shraddha Chowk, Sangamner 422605',
+  nashikAddress: 'Shop No. 1021 & 1022, First Floor, Roongtha Shopping Hub, Nashik Mumbai Highway, Indira Nagar, Nashik',
+
   mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60456.06986738773!2d74.16831!3d19.57335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdc4a4b9fb77571%3A0xa4a4d9e15a4b14b3!2sSangamner%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1699876543210',
+  nashikMapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60000!2d73.7898!3d19.9975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bddeba1b3a8bfab%3A0x1f5d7a7c2e6b1234!2sIndira%20Nagar%2C%20Nashik!5e0!3m2!1sen!2sin!4v1699876543210',
+
+  founded: '2010',
 };
 
 export const STATS = [
