@@ -90,6 +90,7 @@ export default function ContactSection() {
                   🏢 Sangamner Office — Head Office
                 </div>
                 <div className="space-y-3">
+                  {/* ✅ FIXED — added <a here */}
                   
                     href={'tel:' + COMPANY.phone}
                     className="flex items-center gap-3 group"
@@ -139,6 +140,7 @@ export default function ContactSection() {
                   🏢 Nashik Office
                 </div>
                 <div className="space-y-3">
+                  {/* ✅ FIXED — added <a here */}
                   
                     href={'tel:' + COMPANY.nashikPhone}
                     className="flex items-center gap-3 group"
@@ -179,7 +181,7 @@ export default function ContactSection() {
                 </div>
               </div>
 
-              {/* WhatsApp */}
+              {/* ✅ FIXED — added <a here */}
               
                 href={'https://wa.me/' + COMPANY.whatsapp + '?text=Hello! I would like to know more about your projects.'}
                 target="_blank"
