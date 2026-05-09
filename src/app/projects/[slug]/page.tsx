@@ -74,7 +74,7 @@ export default function ProjectDetailPage() {
                 { icon: '🏠', label: 'Type', value: project.specs },
                 { icon: '📍', label: 'Location', value: project.location },
                 { icon: '🏗️', label: 'Units', value: project.units || 'Multiple' },
-                { icon: '📅', label: project.status === 'completed' ? 'Completed' : 'Expected', value: project.completionYear || '2025' },
+                { icon: '📅', label: project.status === 'completed' ? 'Completed' },
               ].map((item, i) => (
                 <div key={i} className="glass rounded-xl p-4 text-center">
                   <div className="text-2xl mb-1">{item.icon}</div>
