@@ -22,8 +22,8 @@ export const COMPANY = {
 };
 
 export const STATS = [
-  { value: 27, label: 'Projects', suffix: '+' },
-  { value: 14, label: 'Years Experience', suffix: '+' },
+  { value: 30, label: 'Projects', suffix: '+' },
+  { value: 16, label: 'Years Experience', suffix: '+' },
   { value: 500, label: 'Happy Families', suffix: '+' },
   { value: 100, label: 'Client Satisfaction', suffix: '%' },
 ];
