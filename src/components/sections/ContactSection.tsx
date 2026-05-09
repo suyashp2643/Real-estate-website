@@ -78,35 +78,19 @@ export default function ContactSection() {
               with a free consultation and project estimate.
             </p>
 
-            {/* Contact cards */}
             <div className="space-y-4">
 
               {/* Sangamner Office */}
-              <div
-                className="glass rounded-xl p-4"
-                style={{ borderLeft: '3px solid #d4a820' }}
-              >
+              <div className="glass rounded-xl p-4" style={{ borderLeft: '3px solid #d4a820' }}>
                 <div className="text-[11px] text-[#d4a820] uppercase tracking-wider font-bold mb-3">
                   🏢 Sangamner Office — Head Office
                 </div>
                 <div className="space-y-3">
-                  {/* ✅ FIXED — added <a here */}
-                  
-                    href={'tel:' + COMPANY.phone}
-                    className="flex items-center gap-3 group"
-                  >
+                  <a href={'tel:' + COMPANY.phone} className="flex items-center gap-3 group">
                     <span className="text-lg">📞</span>
                     <div>
-                      <div
-                        className="text-[10px] uppercase tracking-wide"
-                        style={{ color: 'var(--text-muted)' }}
-                      >
-                        Call
-                      </div>
-                      <div
-                        className="text-sm font-semibold group-hover:text-[#d4a820] transition-colors"
-                        style={{ color: 'var(--text-primary)' }}
-                      >
+                      <div className="text-[10px] uppercase tracking-wide" style={{ color: 'var(--text-muted)' }}>Call</div>
+                      <div className="text-sm font-semibold group-hover:text-[#d4a820] transition-colors" style={{ color: 'var(--text-primary)' }}>
                         {COMPANY.phone}
                       </div>
                     </div>
@@ -114,49 +98,24 @@ export default function ContactSection() {
                   <div className="flex items-start gap-3">
                     <span className="text-lg mt-0.5">📍</span>
                     <div>
-                      <div
-                        className="text-[10px] uppercase tracking-wide"
-                        style={{ color: 'var(--text-muted)' }}
-                      >
-                        Address
-                      </div>
-                      <div
-                        className="text-[13px]"
-                        style={{ color: 'var(--text-secondary)' }}
-                      >
-                        {COMPANY.address}
-                      </div>
+                      <div className="text-[10px] uppercase tracking-wide" style={{ color: 'var(--text-muted)' }}>Address</div>
+                      <div className="text-[13px]" style={{ color: 'var(--text-secondary)' }}>{COMPANY.address}</div>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Nashik Office */}
-              <div
-                className="glass rounded-xl p-4"
-                style={{ borderLeft: '3px solid #d4a820' }}
-              >
+              <div className="glass rounded-xl p-4" style={{ borderLeft: '3px solid #d4a820' }}>
                 <div className="text-[11px] text-[#d4a820] uppercase tracking-wider font-bold mb-3">
                   🏢 Nashik Office
                 </div>
                 <div className="space-y-3">
-                  {/* ✅ FIXED — added <a here */}
-                  
-                    href={'tel:' + COMPANY.nashikPhone}
-                    className="flex items-center gap-3 group"
-                  >
+                  <a href={'tel:' + COMPANY.nashikPhone} className="flex items-center gap-3 group">
                     <span className="text-lg">📞</span>
                     <div>
-                      <div
-                        className="text-[10px] uppercase tracking-wide"
-                        style={{ color: 'var(--text-muted)' }}
-                      >
-                        Call
-                      </div>
-                      <div
-                        className="text-sm font-semibold group-hover:text-[#d4a820] transition-colors"
-                        style={{ color: 'var(--text-primary)' }}
-                      >
+                      <div className="text-[10px] uppercase tracking-wide" style={{ color: 'var(--text-muted)' }}>Call</div>
+                      <div className="text-sm font-semibold group-hover:text-[#d4a820] transition-colors" style={{ color: 'var(--text-primary)' }}>
                         {COMPANY.nashikPhone}
                       </div>
                     </div>
@@ -164,24 +123,14 @@ export default function ContactSection() {
                   <div className="flex items-start gap-3">
                     <span className="text-lg mt-0.5">📍</span>
                     <div>
-                      <div
-                        className="text-[10px] uppercase tracking-wide"
-                        style={{ color: 'var(--text-muted)' }}
-                      >
-                        Address
-                      </div>
-                      <div
-                        className="text-[13px]"
-                        style={{ color: 'var(--text-secondary)' }}
-                      >
-                        {COMPANY.nashikAddress}
-                      </div>
+                      <div className="text-[10px] uppercase tracking-wide" style={{ color: 'var(--text-muted)' }}>Address</div>
+                      <div className="text-[13px]" style={{ color: 'var(--text-secondary)' }}>{COMPANY.nashikAddress}</div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* ✅ FIXED — added <a here */}
+              {/* WhatsApp */}
               
                 href={'https://wa.me/' + COMPANY.whatsapp + '?text=Hello! I would like to know more about your projects.'}
                 target="_blank"
@@ -194,16 +143,8 @@ export default function ContactSection() {
                   </svg>
                 </div>
                 <div>
-                  <div
-                    className="text-[11px] uppercase tracking-wide"
-                    style={{ color: 'var(--text-muted)' }}
-                  >
-                    WhatsApp
-                  </div>
-                  <div
-                    className="font-semibold text-sm group-hover:text-[#25D366] transition-colors"
-                    style={{ color: 'var(--text-primary)' }}
-                  >
+                  <div className="text-[11px] uppercase tracking-wide" style={{ color: 'var(--text-muted)' }}>WhatsApp</div>
+                  <div className="font-semibold text-sm group-hover:text-[#25D366] transition-colors" style={{ color: 'var(--text-primary)' }}>
                     Chat on WhatsApp
                   </div>
                 </div>
@@ -211,40 +152,18 @@ export default function ContactSection() {
 
             </div>
 
-            {/* Maps — Both Offices */}
+            {/* Maps */}
             <div className="mt-8 space-y-4">
               <div>
-                <div className="text-[11px] text-[#d4a820] uppercase tracking-wider font-semibold mb-2">
-                  📍 Sangamner Office
-                </div>
+                <div className="text-[11px] text-[#d4a820] uppercase tracking-wider font-semibold mb-2">📍 Sangamner Office</div>
                 <div className="rounded-2xl overflow-hidden border border-[rgba(212,168,32,0.15)] h-44">
-                  <iframe
-                    src={COMPANY.mapEmbed}
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Sangamner Office"
-                  />
+                  <iframe src={COMPANY.mapEmbed} width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Sangamner Office" />
                 </div>
               </div>
               <div>
-                <div className="text-[11px] text-[#d4a820] uppercase tracking-wider font-semibold mb-2">
-                  📍 Nashik Office
-                </div>
+                <div className="text-[11px] text-[#d4a820] uppercase tracking-wider font-semibold mb-2">📍 Nashik Office</div>
                 <div className="rounded-2xl overflow-hidden border border-[rgba(212,168,32,0.15)] h-44">
-                  <iframe
-                    src={COMPANY.nashikMapEmbed}
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Nashik Office"
-                  />
+                  <iframe src={COMPANY.nashikMapEmbed} width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Nashik Office" />
                 </div>
               </div>
             </div>
@@ -258,168 +177,60 @@ export default function ContactSection() {
             transition={{ duration: 0.7, delay: 0.2 }}
           >
             <div className="glass rounded-3xl p-8 border border-[rgba(212,168,32,0.15)]">
-
               <div className="urgency-badge rounded-xl p-3 mb-6 text-center">
                 <span className="text-white text-[12px] font-semibold">
                   🔥 Limited Units Available — Prices Rising Soon! Get Your Free Callback Now
                 </span>
               </div>
-
-              <h3
-                className="font-display text-2xl mb-6"
-                style={{ color: 'var(--text-primary)' }}
-              >
+              <h3 className="font-display text-2xl mb-6" style={{ color: 'var(--text-primary)' }}>
                 Request Free <span className="text-[#d4a820]">Callback</span>
               </h3>
-
               {status === 'success' ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-12"
-                >
+                <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-12">
                   <div className="text-5xl mb-4">✅</div>
-                  <h4
-                    className="font-display text-2xl mb-2"
-                    style={{ color: 'var(--text-primary)' }}
-                  >
-                    Thank You, {form.name}!
-                  </h4>
-                  <p
-                    className="text-sm mb-4"
-                    style={{ color: 'var(--text-secondary)' }}
-                  >
-                    Our team will call you within{' '}
-                    <strong className="text-[#d4a820]">2 hours</strong>.
+                  <h4 className="font-display text-2xl mb-2" style={{ color: 'var(--text-primary)' }}>Thank You, {form.name}!</h4>
+                  <p className="text-sm mb-4" style={{ color: 'var(--text-secondary)' }}>
+                    Our team will call you within <strong className="text-[#d4a820]">2 hours</strong>.
                   </p>
-                  <p
-                    className="text-xs"
-                    style={{ color: 'var(--text-muted)' }}
-                  >
-                    A WhatsApp confirmation has been sent.
-                  </p>
+                  <p className="text-xs" style={{ color: 'var(--text-muted)' }}>A WhatsApp confirmation has been sent.</p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
-
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label
-                        className="text-[11px] uppercase tracking-wide block mb-2"
-                        style={{ color: 'var(--text-muted)' }}
-                      >
-                        Full Name
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
-                        value={form.name}
-                        onChange={handleChange}
-                        placeholder="Rajesh Patil"
-                        className="form-input"
-                        required
-                      />
+                      <label className="text-[11px] uppercase tracking-wide block mb-2" style={{ color: 'var(--text-muted)' }}>Full Name</label>
+                      <input type="text" name="name" value={form.name} onChange={handleChange} placeholder="Rajesh Patil" className="form-input" required />
                     </div>
                     <div>
-                      <label
-                        className="text-[11px] uppercase tracking-wide block mb-2"
-                        style={{ color: 'var(--text-muted)' }}
-                      >
-                        Phone *
-                      </label>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={form.phone}
-                        onChange={handleChange}
-                        placeholder="+91 98765 43210"
-                        className="form-input"
-                        required
-                      />
+                      <label className="text-[11px] uppercase tracking-wide block mb-2" style={{ color: 'var(--text-muted)' }}>Phone *</label>
+                      <input type="tel" name="phone" value={form.phone} onChange={handleChange} placeholder="+91 98765 43210" className="form-input" required />
                     </div>
                   </div>
-
                   <div>
-                    <label
-                      className="text-[11px] uppercase tracking-wide block mb-2"
-                      style={{ color: 'var(--text-muted)' }}
-                    >
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      placeholder="your@email.com"
-                      className="form-input"
-                    />
+                    <label className="text-[11px] uppercase tracking-wide block mb-2" style={{ color: 'var(--text-muted)' }}>Email</label>
+                    <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="your@email.com" className="form-input" />
                   </div>
-
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label
-                        className="text-[11px] uppercase tracking-wide block mb-2"
-                        style={{ color: 'var(--text-muted)' }}
-                      >
-                        Interested In
-                      </label>
-                      <select
-                        name="interestedIn"
-                        value={form.interestedIn}
-                        onChange={handleChange}
-                        className="form-input"
-                        required
-                      >
+                      <label className="text-[11px] uppercase tracking-wide block mb-2" style={{ color: 'var(--text-muted)' }}>Interested In</label>
+                      <select name="interestedIn" value={form.interestedIn} onChange={handleChange} className="form-input" required>
                         <option value="">Select Type</option>
-                        {INTEREST_OPTIONS.map(opt => (
-                          <option key={opt} value={opt}>{opt}</option>
-                        ))}
+                        {INTEREST_OPTIONS.map(opt => <option key={opt} value={opt}>{opt}</option>)}
                       </select>
                     </div>
                     <div>
-                      <label
-                        className="text-[11px] uppercase tracking-wide block mb-2"
-                        style={{ color: 'var(--text-muted)' }}
-                      >
-                        Budget Range
-                      </label>
-                      <select
-                        name="budget"
-                        value={form.budget}
-                        onChange={handleChange}
-                        className="form-input"
-                      >
+                      <label className="text-[11px] uppercase tracking-wide block mb-2" style={{ color: 'var(--text-muted)' }}>Budget Range</label>
+                      <select name="budget" value={form.budget} onChange={handleChange} className="form-input">
                         <option value="">Select Budget</option>
-                        {BUDGET_OPTIONS.map(opt => (
-                          <option key={opt} value={opt}>{opt}</option>
-                        ))}
+                        {BUDGET_OPTIONS.map(opt => <option key={opt} value={opt}>{opt}</option>)}
                       </select>
                     </div>
                   </div>
-
                   <div>
-                    <label
-                      className="text-[11px] uppercase tracking-wide block mb-2"
-                      style={{ color: 'var(--text-muted)' }}
-                    >
-                      Message
-                    </label>
-                    <textarea
-                      name="message"
-                      value={form.message}
-                      onChange={handleChange}
-                      placeholder="Tell us about your requirements..."
-                      rows={3}
-                      className="form-input resize-none"
-                    />
+                    <label className="text-[11px] uppercase tracking-wide block mb-2" style={{ color: 'var(--text-muted)' }}>Message</label>
+                    <textarea name="message" value={form.message} onChange={handleChange} placeholder="Tell us about your requirements..." rows={3} className="form-input resize-none" />
                   </div>
-
-                  <button
-                    type="submit"
-                    disabled={status === 'loading'}
-                    className="btn-gold w-full text-sm py-4 disabled:opacity-60 disabled:cursor-not-allowed"
-                  >
+                  <button type="submit" disabled={status === 'loading'} className="btn-gold w-full text-sm py-4 disabled:opacity-60 disabled:cursor-not-allowed">
                     {status === 'loading' ? (
                       <span className="flex items-center justify-center gap-2">
                         <span className="w-4 h-4 border-2 border-[#0f0f0f]/30 border-t-[#0f0f0f] rounded-full animate-spin" />
@@ -427,20 +238,12 @@ export default function ContactSection() {
                       </span>
                     ) : '🏗️ Request Free Callback — Get Called in 2 Hours'}
                   </button>
-
                   {status === 'error' && (
-                    <p className="text-red-400 text-[12px] text-center">
-                      Something went wrong. Please call us directly.
-                    </p>
+                    <p className="text-red-400 text-[12px] text-center">Something went wrong. Please call us directly.</p>
                   )}
-
-                  <p
-                    className="text-[11px] text-center"
-                    style={{ color: 'var(--text-muted)' }}
-                  >
+                  <p className="text-[11px] text-center" style={{ color: 'var(--text-muted)' }}>
                     🔒 Your information is 100% confidential. No spam, ever.
                   </p>
-
                 </form>
               )}
             </div>
