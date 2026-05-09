@@ -31,6 +31,7 @@ export default function Footer() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
+                title="Sangamner Office Map"
               />
             </div>
           </div>
@@ -50,6 +51,7 @@ export default function Footer() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
+                title="Nashik Office Map"
               />
             </div>
           </div>
@@ -138,7 +140,7 @@ export default function Footer() {
                 <span>📞</span>
                 <div>
                   <div className="text-[10px] text-[#d4a820] uppercase tracking-wide mb-0.5">Nashik</div>
-                  <a href={`tel:${COMPANY.nashikPhoneRaw}`} className="hover:text-[#d4a820] transition-colors">
+                  <a href={`tel:${COMPANY.nashikPhone}`} className="hover:text-[#d4a820] transition-colors">
                     {COMPANY.nashikPhone}
                   </a>
                 </div>
@@ -149,7 +151,7 @@ export default function Footer() {
                 <span>📞</span>
                 <div>
                   <div className="text-[10px] text-[#d4a820] uppercase tracking-wide mb-0.5">Sangamner</div>
-                  <a href={`tel:${COMPANY.phoneRaw}`} className="hover:text-[#d4a820] transition-colors">
+                  <a href={`tel:${COMPANY.phone}`} className="hover:text-[#d4a820] transition-colors">
                     {COMPANY.phone}
                   </a>
                 </div>
