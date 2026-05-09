@@ -70,8 +70,8 @@ export default function Footer() {
             </p>
             <div className="flex gap-3">
 
-              {/* ✅ FIXED — added <a here */}
-              
+              {/* WhatsApp */}
+              <a
                 href={`https://wa.me/${COMPANY.whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -82,8 +82,8 @@ export default function Footer() {
                 </svg>
               </a>
 
-              {/* ✅ FIXED — added <a here */}
-              
+              {/* Phone */}
+              <a
                 href={`tel:${COMPANY.phone}`}
                 className="w-9 h-9 rounded-full border border-[rgba(212,168,32,0.3)] flex items-center justify-center text-[#d4a820] hover:bg-[rgba(212,168,32,0.1)] transition-all text-sm"
               >
