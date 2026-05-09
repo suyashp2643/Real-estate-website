@@ -263,7 +263,7 @@ export const PROJECTS: Project[] = [
     status: 'ongoing',
     specs: '2BHK, 3BHK, Penthouse',
     units: 'Wing A — 24 Units | Wing B & C — 42 Units | 12 Shops',
-    image: 'https://jaybhadrabuilders.com/wp-content/uploads/2025/04/5.png',
+    image: 'https://i.ibb.co/MD5jJj6v/Whats-App-Image-2026-05-04-at-13-52-17.jpg',
     description: 'Latest phase of Golden City with penthouse options and premium specifications throughout.',
     fullDescription: 'The latest and most premium phase of Golden City Sangamner features exclusive penthouse options along with spacious 2BHK and 3BHK apartments. This project represents the pinnacle of Jaybhadra Builders craftsmanship with the finest materials, modern amenities, and attention to detail in every aspect of construction.',
     highlights: ['Exclusive Penthouses', '2BHK & 3BHK Options', 'Premium Specifications', 'Finest Materials', 'Modern Amenities', 'Only a Few Units Left'],
