@@ -12,10 +12,16 @@ export default function ProjectDetailPage() {
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [form, setForm] = useState<FormState>({ name: '', phone: '', date: '', time: '' });
   const project = PROJECTS.find((p: any) => p.slug === slug) as any;
 
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setMounted(true);
+    const saved = localStorage.getItem('jb-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', saved);
+  }, []);
 
   const handleBooking = (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,103 +30,200 @@ export default function ProjectDetailPage() {
     setTimeout(() => { window.open('https://wa.me/' + COMPANY.whatsapp + '?text=' + msg, '_blank'); }, 800);
   };
 
+  if (!mounted) {
+    return (
+      <div style={{ background: '#0f0f0f', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ color: '#d4a820', fontFamily: 'serif', fontSize: '24px' }}>Loading...</div>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen" style={{ background: 'var(--bg-primary)' }}>
+    <div className="min-h-screen" style={{ background: 'var(--bg-primary, #0f0f0f)' }}>
 
       {!project && (
         <div className="min-h-screen flex flex-col items-center justify-center">
           <div className="text-6xl mb-4">🏗️</div>
-          <h1 className="font-display text-3xl mb-4" style={{ color: 'var(--text-primary)' }}>Project Not Found</h1>
-          <button onClick={() => router.push('/')} className="btn-gold px-8 py-3">Back to Home</button>
+          <h1 className="font-display text-3xl mb-4" style={{ color: 'var(--text-primary, #fdfaf4)' }}>
+            Project Not Found
+          </h1>
+          <button onClick={() => router.push('/')} className="btn-gold px-8 py-3">
+            Back to Home
+          </button>
         </div>
       )}
 
       {project && (
         <div>
+
+          {/* Back button */}
           <div className="fixed top-6 left-6 z-50">
-            <button onClick={() => router.push('/#projects')} className="glass rounded-full px-5 py-2.5 text-[13px] font-semibold flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
+            <button
+              onClick={() => router.push('/#projects')}
+              style={{
+                background: 'rgba(15,15,15,0.8)',
+                backdropFilter: 'blur(12px)',
+                border: '1px solid rgba(212,168,32,0.3)',
+                borderRadius: '999px',
+                padding: '10px 20px',
+                color: 'var(--text-primary, #fdfaf4)',
+                fontSize: '13px',
+                fontWeight: '600',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+              }}
+            >
               ← Back to Projects
             </button>
           </div>
 
+          {/* Hero image */}
           <div className="relative h-[55vh] overflow-hidden">
             <img src={project.image} alt={project.name} className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] via-[#0f0f0f]/40 to-transparent" />
             <div className="absolute top-8 right-8">
-              <span className={'px-4 py-2 rounded-full text-[12px] font-bold uppercase ' + (project.status === 'ongoing' ? 'bg-green-500/90 text-white' : 'bg-[#d4a820]/90 text-[#0f0f0f]')}>
+              <span
+                style={{
+                  padding: '8px 16px',
+                  borderRadius: '999px',
+                  fontSize: '12px',
+                  fontWeight: '700',
+                  textTransform: 'uppercase',
+                  background: project.status === 'ongoing' ? 'rgba(34,197,94,0.9)' : 'rgba(212,168,32,0.9)',
+                  color: project.status === 'ongoing' ? 'white' : '#0f0f0f',
+                }}
+              >
                 {project.status === 'ongoing' ? '🟢 Ongoing' : '✅ Completed'}
               </span>
             </div>
             {project.urgency && (
               <div className="absolute top-8 left-24">
-                <span className="urgency-badge px-4 py-2 rounded-full text-[11px] font-bold text-white">
+                <span style={{ background: 'rgba(192,57,43,0.9)', padding: '8px 16px', borderRadius: '999px', fontSize: '11px', fontWeight: '700', color: 'white' }}>
                   🔥 {project.urgency}
                 </span>
               </div>
             )}
             <div className="absolute bottom-10 left-0 right-0 px-6 max-w-7xl mx-auto">
               <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-                <span className="text-[11px] text-[#d4a820] uppercase tracking-[0.3em]">
+                <span style={{ fontSize: '11px', color: '#d4a820', textTransform: 'uppercase', letterSpacing: '0.3em' }}>
                   {project.category} · {project.location}
                 </span>
-                <h1 className="font-display text-4xl md:text-6xl font-bold text-white mt-2">
+                <h1 className="font-display" style={{ fontSize: 'clamp(32px, 6vw, 64px)', fontWeight: '700', color: 'white', marginTop: '8px' }}>
                   {project.name}
                 </h1>
               </motion.div>
             </div>
           </div>
 
-          <div className="max-w-7xl mx-auto px-6 py-16">
+          {/* Main content */}
+          <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '64px 24px' }}>
             <div className="grid lg:grid-cols-3 gap-12">
 
+              {/* Left column */}
               <div className="lg:col-span-2 space-y-10">
 
+                {/* Info cards */}
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   {[
                     { icon: '🏠', label: 'Type', value: project.specs },
                     { icon: '📍', label: 'Location', value: project.location },
                     { icon: '🏗️', label: 'Units', value: project.units || 'Multiple' },
                   ].map((item, i) => (
-                    <div key={i} className="glass rounded-xl p-4 text-center">
-                      <div className="text-2xl mb-1">{item.icon}</div>
-                      <div className="text-[10px] uppercase tracking-wide mb-1" style={{ color: 'var(--text-muted)' }}>{item.label}</div>
-                      <div className="text-[12px] font-semibold" style={{ color: 'var(--text-primary)' }}>{item.value}</div>
+                    <div
+                      key={i}
+                      style={{
+                        background: 'rgba(255,255,255,0.05)',
+                        border: '1px solid rgba(212,168,32,0.15)',
+                        borderRadius: '12px',
+                        padding: '16px',
+                        textAlign: 'center',
+                      }}
+                    >
+                      <div style={{ fontSize: '24px', marginBottom: '6px' }}>{item.icon}</div>
+                      <div style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-muted, #888)', marginBottom: '4px' }}>
+                        {item.label}
+                      </div>
+                      <div style={{ fontSize: '12px', fontWeight: '600', color: 'var(--text-primary, #fdfaf4)' }}>
+                        {item.value}
+                      </div>
                     </div>
                   ))}
                 </div>
 
+                {/* About */}
                 <div>
-                  <h2 className="font-display text-2xl mb-4" style={{ color: 'var(--text-primary)' }}>About This Project</h2>
-                  <div className="w-12 h-0.5 bg-[#d4a820] mb-5" />
-                  <p className="text-[15px] leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                  <h2 className="font-display" style={{ fontSize: '28px', marginBottom: '16px', color: 'var(--text-primary, #fdfaf4)' }}>
+                    About This Project
+                  </h2>
+                  <div style={{ width: '48px', height: '2px', background: '#d4a820', marginBottom: '20px' }} />
+                  <p style={{ fontSize: '15px', lineHeight: '1.8', color: 'var(--text-secondary, #aaa)' }}>
                     {project.fullDescription || project.description}
                   </p>
                 </div>
 
+                {/* Highlights */}
                 {project.highlights && (
                   <div>
-                    <h2 className="font-display text-2xl mb-4" style={{ color: 'var(--text-primary)' }}>Project Highlights</h2>
-                    <div className="w-12 h-0.5 bg-[#d4a820] mb-5" />
+                    <h2 className="font-display" style={{ fontSize: '28px', marginBottom: '16px', color: 'var(--text-primary, #fdfaf4)' }}>
+                      Project Highlights
+                    </h2>
+                    <div style={{ width: '48px', height: '2px', background: '#d4a820', marginBottom: '20px' }} />
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {project.highlights.map((item: string, i: number) => (
-                        <div key={i} className="flex items-center gap-3 glass rounded-xl p-4">
-                          <div className="w-6 h-6 rounded-full bg-[rgba(212,168,32,0.2)] flex items-center justify-center flex-shrink-0">
-                            <span className="text-[#d4a820] text-[11px] font-bold">✓</span>
+                        <div
+                          key={i}
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '12px',
+                            background: 'rgba(255,255,255,0.04)',
+                            border: '1px solid rgba(212,168,32,0.12)',
+                            borderRadius: '12px',
+                            padding: '14px 16px',
+                          }}
+                        >
+                          <div style={{
+                            width: '24px', height: '24px', borderRadius: '50%',
+                            background: 'rgba(212,168,32,0.15)',
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            flexShrink: 0,
+                          }}>
+                            <span style={{ color: '#d4a820', fontSize: '11px', fontWeight: '700' }}>✓</span>
                           </div>
-                          <span className="text-[13px]" style={{ color: 'var(--text-secondary)' }}>{item}</span>
+                          <span style={{ fontSize: '13px', color: 'var(--text-secondary, #aaa)' }}>{item}</span>
                         </div>
                       ))}
                     </div>
                   </div>
                 )}
 
+                {/* Amenities */}
                 {project.amenities && (
                   <div>
-                    <h2 className="font-display text-2xl mb-4" style={{ color: 'var(--text-primary)' }}>Amenities</h2>
-                    <div className="w-12 h-0.5 bg-[#d4a820] mb-5" />
-                    <div className="flex flex-wrap gap-3">
+                    <h2 className="font-display" style={{ fontSize: '28px', marginBottom: '16px', color: 'var(--text-primary, #fdfaf4)' }}>
+                      Amenities
+                    </h2>
+                    <div style={{ width: '48px', height: '2px', background: '#d4a820', marginBottom: '20px' }} />
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
                       {project.amenities.map((item: string, i: number) => (
-                        <span key={i} className="trust-badge text-[12px]">✅ {item}</span>
+                        <span
+                          key={i}
+                          style={{
+                            border: '1px solid rgba(212,168,32,0.3)',
+                            background: 'rgba(212,168,32,0.05)',
+                            borderRadius: '40px',
+                            padding: '8px 16px',
+                            fontSize: '12px',
+                            color: '#f0d080',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '6px',
+                          }}
+                        >
+                          ✅ {item}
+                        </span>
                       ))}
                     </div>
                   </div>
@@ -128,35 +231,74 @@ export default function ProjectDetailPage() {
 
               </div>
 
+              {/* Right column — sticky sidebar */}
               <div>
-                <div className="sticky top-24 space-y-4">
+                <div style={{ position: 'sticky', top: '96px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
 
                   {project.urgency && (
-                    <div className="urgency-badge rounded-xl p-3 text-center">
-                      <span className="text-white text-[12px] font-semibold">🔥 {project.urgency}</span>
+                    <div style={{ background: 'linear-gradient(135deg, #c0392b, #e74c3c)', borderRadius: '12px', padding: '12px', textAlign: 'center' }}>
+                      <span style={{ color: 'white', fontSize: '12px', fontWeight: '700' }}>🔥 {project.urgency}</span>
                     </div>
                   )}
 
-                  <div className="glass rounded-2xl p-6 border border-[rgba(212,168,32,0.2)]">
-                    <h3 className="font-display text-xl mb-1" style={{ color: 'var(--text-primary)' }}>Interested in this project?</h3>
-                    <p className="text-[12px] mb-5" style={{ color: 'var(--text-muted)' }}>Get a free consultation from our team</p>
-                    <div className="space-y-3">
-                      <button onClick={() => setShowModal(true)} className="btn-gold w-full py-3.5 text-[13px]">
+                  <div style={{
+                    background: 'rgba(255,255,255,0.04)',
+                    backdropFilter: 'blur(12px)',
+                    border: '1px solid rgba(212,168,32,0.2)',
+                    borderRadius: '16px',
+                    padding: '24px',
+                  }}>
+                    <h3 className="font-display" style={{ fontSize: '20px', marginBottom: '6px', color: 'var(--text-primary, #fdfaf4)' }}>
+                      Interested in this project?
+                    </h3>
+                    <p style={{ fontSize: '12px', marginBottom: '20px', color: 'var(--text-muted, #888)' }}>
+                      Get a free consultation from our team
+                    </p>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                      <button onClick={() => setShowModal(true)} className="btn-gold" style={{ width: '100%', padding: '14px', fontSize: '13px' }}>
                         📅 Book Free Site Visit
                       </button>
-                      <a href={'https://wa.me/' + COMPANY.whatsapp + '?text=Hi I am interested in ' + project.name} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full py-3.5 rounded-md border border-[#25D366]/40 text-[#25D366] text-[13px] font-semibold hover:bg-[#25D366]/10 transition-all">
+                      
+                        href={'https://wa.me/' + COMPANY.whatsapp + '?text=Hi I am interested in ' + project.name}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: 'flex', alignItems: 'center', justifyContent: 'center',
+                          gap: '8px', width: '100%', padding: '14px',
+                          borderRadius: '6px', border: '1.5px solid rgba(37,211,102,0.4)',
+                          color: '#25D366', fontSize: '13px', fontWeight: '600',
+                          textDecoration: 'none',
+                        }}
+                      >
                         WhatsApp Us
                       </a>
-                      <a href={'tel:' + COMPANY.phone} className="btn-outline-gold w-full py-3.5 text-[13px] text-center block">
-                        📞 Call Now
+                      
+                        href={'tel:' + COMPANY.phone}
+                        style={{
+                          display: 'block', textAlign: 'center', width: '100%', padding: '13px',
+                          borderRadius: '6px', border: '1.5px solid #d4a820',
+                          color: '#d4a820', fontSize: '13px', fontWeight: '600',
+                          textDecoration: 'none',
+                        }}
+                      >
+                        📞 Call Now — {COMPANY.phone}
                       </a>
                     </div>
                   </div>
 
-                  <div className="glass rounded-2xl p-5">
-                    <div className="text-[11px] uppercase tracking-wider text-[#d4a820] font-semibold mb-3">Why Jaybhadra Builders</div>
+                  <div style={{
+                    background: 'rgba(255,255,255,0.04)',
+                    border: '1px solid rgba(212,168,32,0.12)',
+                    borderRadius: '16px',
+                    padding: '20px',
+                  }}>
+                    <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.2em', color: '#d4a820', fontWeight: '700', marginBottom: '12px' }}>
+                      Why Jaybhadra Builders
+                    </div>
                     {['✅ Trusted Since 2010', '🔧 3-Year Maintenance', '📋 RERA Compliant', '⭐ 4.9 Star Rated'].map((b, i) => (
-                      <div key={i} className="text-[12px] flex items-center gap-2 mb-2" style={{ color: 'var(--text-secondary)' }}>{b}</div>
+                      <div key={i} style={{ fontSize: '12px', color: 'var(--text-secondary, #aaa)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        {b}
+                      </div>
                     ))}
                   </div>
 
@@ -166,38 +308,71 @@ export default function ProjectDetailPage() {
             </div>
           </div>
 
+          {/* Site Visit Modal */}
           {showModal && (
-            <div className="modal-overlay" onClick={(e) => { if (e.target === e.currentTarget) setShowModal(false); }}>
-              <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="glass-dark rounded-3xl p-8 w-full max-w-md relative">
-                <button onClick={() => setShowModal(false)} className="absolute top-4 right-4 w-8 h-8 rounded-full border border-[rgba(212,168,32,0.3)] text-[#888] hover:text-white flex items-center justify-center text-lg">×</button>
+            <div
+              className="modal-overlay"
+              onClick={(e) => { if (e.target === e.currentTarget) setShowModal(false); }}
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                style={{
+                  background: 'rgba(15,15,15,0.95)',
+                  backdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(212,168,32,0.2)',
+                  borderRadius: '24px',
+                  padding: '32px',
+                  width: '100%',
+                  maxWidth: '420px',
+                  position: 'relative',
+                }}
+              >
+                <button
+                  onClick={() => setShowModal(false)}
+                  style={{
+                    position: 'absolute', top: '16px', right: '16px',
+                    width: '32px', height: '32px', borderRadius: '50%',
+                    border: '1px solid rgba(212,168,32,0.3)',
+                    background: 'transparent', color: '#888',
+                    cursor: 'pointer', fontSize: '18px',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}
+                >
+                  ×
+                </button>
+
                 {submitted ? (
-                  <div className="text-center py-6">
-                    <div className="text-5xl mb-4">🏗️</div>
-                    <h3 className="font-display text-2xl text-white mb-2">Visit Confirmed!</h3>
-                    <p className="text-[#888] text-sm">Our team will contact you for <strong className="text-[#d4a820]">{project.name}</strong></p>
+                  <div style={{ textAlign: 'center', padding: '24px 0' }}>
+                    <div style={{ fontSize: '48px', marginBottom: '16px' }}>🏗️</div>
+                    <h3 className="font-display" style={{ fontSize: '24px', color: 'white', marginBottom: '8px' }}>Visit Confirmed!</h3>
+                    <p style={{ color: '#888', fontSize: '14px' }}>
+                      Our team will contact you for{' '}
+                      <strong style={{ color: '#d4a820' }}>{project.name}</strong>
+                    </p>
                   </div>
                 ) : (
                   <div>
-                    <div className="text-center mb-6">
-                      <h3 className="font-display text-2xl text-white mb-1">Book a Site Visit</h3>
-                      <p className="text-[12px] text-[#888]">{project.name}</p>
+                    <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+                      <h3 className="font-display" style={{ fontSize: '24px', color: 'white', marginBottom: '4px' }}>Book a Site Visit</h3>
+                      <p style={{ fontSize: '12px', color: '#888' }}>{project.name}</p>
                     </div>
-                    <form onSubmit={handleBooking} className="space-y-4">
+                    <form onSubmit={handleBooking} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                       <div>
-                        <label className="text-[11px] text-[#666] uppercase tracking-wide block mb-2">Your Name</label>
+                        <label style={{ fontSize: '11px', color: '#666', textTransform: 'uppercase', letterSpacing: '0.1em', display: 'block', marginBottom: '8px' }}>Your Name</label>
                         <input type="text" value={form.name} onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))} placeholder="Full Name" className="form-input" required />
                       </div>
                       <div>
-                        <label className="text-[11px] text-[#666] uppercase tracking-wide block mb-2">Phone Number</label>
+                        <label style={{ fontSize: '11px', color: '#666', textTransform: 'uppercase', letterSpacing: '0.1em', display: 'block', marginBottom: '8px' }}>Phone Number</label>
                         <input type="tel" value={form.phone} onChange={(e) => setForm((prev) => ({ ...prev, phone: e.target.value }))} placeholder="+91 98765 43210" className="form-input" required />
                       </div>
-                      <div className="grid grid-cols-2 gap-3">
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                         <div>
-                          <label className="text-[11px] text-[#666] uppercase tracking-wide block mb-2">Date</label>
+                          <label style={{ fontSize: '11px', color: '#666', textTransform: 'uppercase', letterSpacing: '0.1em', display: 'block', marginBottom: '8px' }}>Date</label>
                           <input type="date" value={form.date} onChange={(e) => setForm((prev) => ({ ...prev, date: e.target.value }))} className="form-input" min={new Date().toISOString().split('T')[0]} required />
                         </div>
                         <div>
-                          <label className="text-[11px] text-[#666] uppercase tracking-wide block mb-2">Time</label>
+                          <label style={{ fontSize: '11px', color: '#666', textTransform: 'uppercase', letterSpacing: '0.1em', display: 'block', marginBottom: '8px' }}>Time</label>
                           <select value={form.time} onChange={(e) => setForm((prev) => ({ ...prev, time: e.target.value }))} className="form-input" required>
                             <option value="">Select</option>
                             <option>10:00 AM</option>
@@ -210,7 +385,9 @@ export default function ProjectDetailPage() {
                           </select>
                         </div>
                       </div>
-                      <button type="submit" className="btn-gold w-full py-3.5 text-sm">📅 Book via WhatsApp</button>
+                      <button type="submit" className="btn-gold" style={{ width: '100%', padding: '14px', fontSize: '14px' }}>
+                        📅 Book via WhatsApp
+                      </button>
                     </form>
                   </div>
                 )}
