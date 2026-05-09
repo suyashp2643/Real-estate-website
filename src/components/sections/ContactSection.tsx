@@ -131,7 +131,7 @@ export default function ContactSection() {
               </div>
 
               {/* WhatsApp */}
-              
+              <a
                 href={'https://wa.me/' + COMPANY.whatsapp + '?text=Hello! I would like to know more about your projects.'}
                 target="_blank"
                 rel="noopener noreferrer"
