@@ -12,11 +12,16 @@ export default function ServicesSection() {
   };
 
   return (
-    <section id="services" className="py-24 relative overflow-hidden" style={{background: 'var(--bg-primary)'}}>
+    <section
+      id="services"
+      className="py-24 relative overflow-hidden"
+      style={{ background: 'var(--bg-primary, #0f0f0f)' }}
+    >
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4a820]/30 to-transparent" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(212,168,32,0.04)_0%,transparent_60%)]" />
 
       <div className="max-w-7xl mx-auto px-6" ref={ref}>
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -24,13 +29,22 @@ export default function ServicesSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="text-[11px] text-[#d4a820] uppercase tracking-[0.3em] font-medium">What We Build</span>
-          <h2 className="font-display text-4xl md:text-5xl text-white mt-3 mb-4">
+          <span className="text-[11px] text-[#d4a820] uppercase tracking-[0.3em] font-medium">
+            What We Build
+          </span>
+          <h2
+            className="font-display text-4xl md:text-5xl mt-3 mb-4"
+            style={{ color: 'var(--text-primary, #fdfaf4)' }}
+          >
             Our <span className="gold-shimmer">Services</span>
           </h2>
           <div className="section-divider mb-6" />
-          <p className="text-[#888] max-w-xl mx-auto text-sm">
-            Comprehensive construction solutions — from concept to completion, we handle every aspect of your dream project.
+          <p
+            className="max-w-xl mx-auto text-sm"
+            style={{ color: 'var(--text-secondary, #aaa)' }}
+          >
+            Comprehensive construction solutions — from concept to completion,
+            we handle every aspect of your dream project.
           </p>
         </motion.div>
 
@@ -42,34 +56,88 @@ export default function ServicesSection() {
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="service-card glass rounded-2xl p-7 group border border-[rgba(212,168,32,0.08)] hover:border-[rgba(212,168,32,0.25)] transition-all duration-300"
+              style={{
+                background: 'var(--bg-card, rgba(255,255,255,0.04))',
+                border: '1px solid var(--border-color, rgba(212,168,32,0.08))',
+                borderRadius: '16px',
+                padding: '28px',
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease',
+                cursor: 'default',
+              }}
+              whileHover={{
+                y: -4,
+                boxShadow: '0 12px 40px rgba(212,168,32,0.1)',
+              }}
             >
+              {/* Icon + title row */}
               <div className="flex items-start gap-4 mb-4">
-                <div className="w-12 h-12 rounded-lg bg-[rgba(212,168,32,0.08)] flex items-center justify-center text-xl flex-shrink-0 group-hover:bg-[rgba(212,168,32,0.15)] transition-colors duration-300">
+                <div
+                  style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '10px',
+                    background: 'rgba(212,168,32,0.08)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '20px',
+                    flexShrink: 0,
+                  }}
+                >
                   {service.icon}
                 </div>
-                <div>
-                  <h3 className="font-display text-lg font-semibold text-white group-hover:text-[#f0d080] transition-colors duration-300">
+                <div style={{ flex: 1 }}>
+                  <h3
+                    className="font-display text-lg font-semibold"
+                    style={{ color: 'var(--text-primary, #fdfaf4)' }}
+                  >
                     {service.title}
                   </h3>
-                  <div className="w-8 h-0.5 bg-[#d4a820]/40 mt-1 group-hover:w-full transition-all duration-500" />
+                  <div
+                    style={{
+                      width: '32px',
+                      height: '2px',
+                      background: 'rgba(212,168,32,0.5)',
+                      marginTop: '6px',
+                      borderRadius: '2px',
+                    }}
+                  />
                 </div>
               </div>
 
-              <p className="text-[13px] text-[#777] leading-relaxed mb-5">
+              {/* Description */}
+              <p
+                className="text-[13px] leading-relaxed mb-5"
+                style={{ color: 'var(--text-secondary, #777)' }}
+              >
                 {service.description}
               </p>
 
+              {/* Enquire link */}
               <button
                 onClick={scrollToContact}
-                className="text-[12px] font-semibold text-[#d4a820] hover:text-[#f0d080] transition-colors duration-200 flex items-center gap-2 group/btn"
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: '#d4a820',
+                  fontSize: '12px',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: 0,
+                  fontFamily: 'Inter, sans-serif',
+                  letterSpacing: '0.05em',
+                  textTransform: 'uppercase',
+                }}
               >
-                Enquire Now
-                <span className="group-hover/btn:translate-x-1 transition-transform duration-200">→</span>
+                Enquire Now →
               </button>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );
