@@ -116,28 +116,38 @@ export default function WhyUsSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="mt-14 flex flex-wrap justify-center gap-3"
+          className="mt-16 flex flex-wrap justify-center gap-5"
         >
           {TRUST_BADGES.map((badge, i) => (
-            <motion.span
+            <motion.div
               key={i}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ delay: 0.4 + i * 0.08 }}
+              whileHover={{
+                y: -4,
+                scale: 1.03,
+                boxShadow: '0 12px 35px rgba(212,168,32,0.18)',
+              }}
               style={{
-                border: '1px solid rgba(212,168,32,0.3)',
-                background: 'rgba(212,168,32,0.06)',
-                borderRadius: '40px',
-                padding: '8px 18px',
-                fontSize: '12px',
+                border: '1px solid rgba(212,168,32,0.28)',
+                background: 'rgba(255,255,255,0.03)',
+                backdropFilter: 'blur(10px)',
+                borderRadius: '18px',
+                padding: '18px 30px',
+                fontSize: '16px',
+                fontWeight: 500,
                 color: 'var(--text-primary, #fdfaf4)',
-                display: 'inline-flex',
+                display: 'flex',
                 alignItems: 'center',
-                gap: '6px',
+                justifyContent: 'center',
+                minWidth: '240px',
+                minHeight: '68px',
+                transition: 'all 0.3s ease',
               }}
             >
               {badge}
-            </motion.span>
+            </motion.div>
           ))}
         </motion.div>
 
