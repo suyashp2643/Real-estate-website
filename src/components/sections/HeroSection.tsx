@@ -26,7 +26,7 @@ export default function HeroSection() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&q=90')`,
+            backgroundImage: `url('https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?w=1920&q=90')`,
             transform: 'scale(1.1)',
           }}
         />
