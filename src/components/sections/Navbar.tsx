@@ -84,7 +84,7 @@ export default function Navbar() {
               onClick={() => scrollTo('#contact')}
               className="btn-gold text-[12px] py-2.5 px-5"
             >
-              Get Free Quote
+              Enquire Now
             </button>
           </div>
 
@@ -128,7 +128,7 @@ export default function Navbar() {
                   📞 Call
                 </a>
                 <button onClick={() => scrollTo('#contact')} className="btn-gold flex-1 text-[12px]">
-                  Get Quote
+                  Enquire Now
                 </button>
               </div>
             </motion.div>
