@@ -13,48 +13,7 @@ export default function Footer() {
     <footer className="bg-[#080808] border-t border-[rgba(212,168,32,0.1)] pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-6">
 
-        {/* Map Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-
-          {/* Sangamner Map */}
-          <div>
-            <h4 className="text-[11px] uppercase tracking-[0.2em] text-[#d4a820] font-semibold mb-3">
-              📍 Sangamner Office
-            </h4>
-            <p className="text-[12px] text-[#666] mb-2">{COMPANY.address}</p>
-            <div className="rounded-lg overflow-hidden border border-[rgba(212,168,32,0.15)]">
-              <iframe
-                src={COMPANY.mapEmbed}
-                width="100%"
-                height="180"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Sangamner Office Map"
-              />
-            </div>
-          </div>
-
-          {/* Nashik Map */}
-          <div>
-            <h4 className="text-[11px] uppercase tracking-[0.2em] text-[#d4a820] font-semibold mb-3">
-              📍 Nashik Office
-            </h4>
-            <p className="text-[12px] text-[#666] mb-2">{COMPANY.nashikAddress}</p>
-            <div className="rounded-lg overflow-hidden border border-[rgba(212,168,32,0.15)]">
-              <iframe
-                src={COMPANY.nashikMapEmbed}
-                width="100%"
-                height="180"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Nashik Office Map"
-              />
-            </div>
-          </div>
+        
 
         </div>
 
