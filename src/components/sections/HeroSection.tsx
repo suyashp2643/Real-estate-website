@@ -44,16 +44,7 @@ export default function HeroSection() {
       {/* Main content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20">
         <div className="max-w-3xl">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: loaded ? 1 : 0, y: loaded ? 0 : 20 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-2 trust-badge mb-8"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#d4a820] animate-pulse" />
-            Premium Construction · Sangamner Since 2010
-          </motion.div>
+          
 
           {/* Headline */}
           <motion.h1
