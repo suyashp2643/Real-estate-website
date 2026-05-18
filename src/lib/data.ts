@@ -360,7 +360,7 @@ export const WHY_US = [
   {
     icon: '👷',
     title: 'Expert Team',
-    description: '14+ years of collective expertise. Our engineers, architects and craftsmen bring unmatched skill to every project.',
+    description: '16+ years of collective expertise. Our engineers, architects and craftsmen bring unmatched skill to every project.',
   },
   {
     icon: '⚙️',
@@ -419,7 +419,7 @@ export const TESTIMONIALS = [
 
 export const TRUST_BADGES = [
   '✅ Trusted Since 2010',
-  '🔧 3-Year Maintenance Guarantee',
+  '🔧 Maintenance Guarantee',
   '📋 RERA Compliant Projects',
   '🏅 ISO Certified Construction',
   '🤝 500+ Happy Families',
