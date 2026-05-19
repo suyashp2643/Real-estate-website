@@ -16,27 +16,36 @@ export default function ContactSection() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!form.phone) return;
-    setStatus('loading');
-    try {
-      const { storeLead } = await import('@/lib/leadService');
-      await storeLead({ ...form, source: 'Website Contact Form' });
-      const adminPhone = COMPANY.whatsapp;
-      const adminMsg = encodeURIComponent(
-        '🏗️ *New Lead - Jaybhadra Builders*\n\n' +
-        '👤 Name: ' + form.name + '\n📞 Phone: ' + form.phone + '\n📧 Email: ' + (form.email || 'N/A') + '\n' +
-        '🏠 Interested In: ' + form.interestedIn + '\n💰 Budget: ' + form.budget + '\n💬 Message: ' + (form.message || 'N/A')
+  e.preventDefault();
+  if (!form.phone) return;
+  setStatus('loading');
+
+  try {
+    const adminMsg = encodeURIComponent(
+      '🏗️ *New Lead - Jaybhadra Builders*' +
+      '%0A%0A' +
+      '👤 Name: ' + form.name +
+      '%0A📞 Phone: ' + form.phone +
+      '%0A📧 Email: ' + (form.email || 'N/A') +
+      '%0A🏠 Interested In: ' + form.interestedIn +
+      '%0A💰 Budget: ' + form.budget +
+      '%0A💬 Message: ' + (form.message || 'N/A')
+    );
+
+    setStatus('success');
+
+    setTimeout(() => {
+      window.open(
+        'https://wa.me/' + COMPANY.whatsapp + '?text=' + adminMsg,
+        '_blank'
       );
-      setStatus('success');
-      setTimeout(() => {
-        window.open('https://wa.me/' + adminPhone + '?text=' + adminMsg, '_blank');
-      }, 1000);
-    } catch (err) {
-      console.error(err);
-      setStatus('error');
-    }
-  };
+    }, 1000);
+
+  } catch (err) {
+    console.error(err);
+    setStatus('error');
+  }
+};
 
   return (
     <section
