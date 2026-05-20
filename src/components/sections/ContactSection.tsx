@@ -21,16 +21,16 @@ export default function ContactSection() {
   setStatus('loading');
 
   try {
-    const adminMsg = encodeURIComponent(
-      '🏗️ *New Lead - Jaybhadra Builders*' +
-      '%0A%0A' +
-      '👤 Name: ' + form.name +
-      '%0A📞 Phone: ' + form.phone +
-      '%0A📧 Email: ' + (form.email || 'N/A') +
-      '%0A🏠 Interested In: ' + form.interestedIn +
-      '%0A💰 Budget: ' + form.budget +
-      '%0A💬 Message: ' + (form.message || 'N/A')
-    );
+    const message = 
+      '🏗️ *New Lead - Jaybhadra Builders*\n\n' +
+      '👤 Name: ' + form.name + '\n' +
+      '📞 Phone: ' + form.phone + '\n' +
+      '📧 Email: ' + (form.email || 'N/A') + '\n' +
+      '🏠 Interested In: ' + form.interestedIn + '\n' +
+      '💰 Budget: ' + form.budget + '\n' +
+      '💬 Message: ' + (form.message || 'N/A');
+
+    const adminMsg = encodeURIComponent(message);
 
     setStatus('success');
 
